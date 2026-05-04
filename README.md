@@ -2,7 +2,7 @@
 
 ## Organisation du dépôt
 
-Pour faciliter la navigation et l'examen des preuves de compétences (Bloc 1), les ressources sont organisées comme suit :
+Pour faciliter la navigation et l'examen des preuves de compétences, les ressources sont organisées comme suit :
 
 | Dossier | Description | Contenu type |
 | :--- | :--- | :--- |
