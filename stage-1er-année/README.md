@@ -17,3 +17,4 @@ L'outil utilisé est **Grafana** avec le plugin Weathermap, alimenté par des do
 * **[Dashboards finaux](./captures%20weathermap/)** Visualisations des différents segments du réseau.
 
 ---
+[⬅️ Retour au tableau de bord](../README.md)
