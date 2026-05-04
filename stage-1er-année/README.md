@@ -13,7 +13,7 @@ L'outil utilisé est **Grafana** avec le plugin Weathermap, alimenté par des do
 * **Indicateurs visuels** : Utilisation d'une échelle de couleurs pour identifier immédiatement les saturations ou les pertes de paquets (ping loss).
 
 ## Preuves et Livrables
-* **[Documentation Utilisateur](./documentation/documentation-weathermap.pdf)** : Guide complet sur la prise en main et la configuration des nœuds/liens.
-* **Dashboards finaux** : Visualisations des différents segments du réseau.
+* **[Documentation Utilisateur](./documentation/)** : Guide complet sur la prise en main et la configuration des nœuds/liens.
+* **[Dashboards finaux](./captures-weathermap/)** Visualisations des différents segments du réseau.
 
 ---
