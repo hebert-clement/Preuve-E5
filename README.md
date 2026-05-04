@@ -33,3 +33,4 @@ Pour faciliter la navigation et l'examen des preuves de compétences (Bloc 1), l
 | :--- | :--- | :--- |
 | **SEO** | TP sur l'optimisation du référencement web. | [📂 Voir](./web-ref/tp-referencement/) |
 | **Web Design** | Création d'une page d'accueil pour une entreprise. | [📂 Voir](./web-ref/site-entreprise/) |
+| **Web Design** | Création d'une page d'accueil pour une entreprise. | [📂 Voir](./stage-1er-année/) |
