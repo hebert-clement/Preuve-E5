@@ -14,7 +14,7 @@ L'outil utilisé est **Grafana** avec le plugin Weathermap, alimenté par des do
 
 ## Preuves et Livrables
 * **[Documentation Utilisateur](./documentation/)** : Guide complet sur la prise en main et la configuration des nœuds/liens.
-* **[Dashboards finaux](./captures%20weathermap/)** Visualisations des différents segments du réseau.
+* **[Dashboards finaux](./captures-weathermap/)** Visualisations des différents segments du réseau.
 
 ---
 [⬅️ Retour au tableau de bord](../README.md)
