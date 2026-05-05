@@ -4,3 +4,6 @@
 <img src="./quatrième dashboard.png" alt="quatrième dashboard" width="900">
 <img src="./requête promQL.png" alt="requête promQL" width="900">
 <img src="./exemple de requête proQL.png" alt="exemple de requête proQL" width="900">
+
+---
+[⬅️ Retour au tableau de bord](../../README.md)
