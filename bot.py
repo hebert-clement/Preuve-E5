@@ -25,11 +25,11 @@ async def suivi(ctx):
 
 @bot.command(name="clear")
 async def clear(ctx, nombre: int = 5):
-    # Supprime le nombre de messages spécifié (+1 pour supprimer aussi la commande tapée)
+    # Supprime les messages demandés (+1 pour la commande elle-même)
     deleted = await ctx.channel.purge(limit=nombre + 1)
     
-    # Envoie un petit message temporaire qui se supprime tout seul (optionnel)
-    confirmation = await ctx.send(f"🧹 {len(deleted) - 1} message(s) supprimé(s) avec succès !")
-    await confirmation.delete(delay=3)
+    # Message RP d'Akane qui grignote les messages
+    confirmation = await ctx.send(f"🦊 *Miam !* Akane a dévoré ces {len(deleted) - 1} message(s) indésirable(s) ! 🍜✨")
+    await confirmation.delete(delay=4)
 
 bot.run(os.getenv("TOKEN"))
