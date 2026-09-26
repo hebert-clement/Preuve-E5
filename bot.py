@@ -28,15 +28,15 @@ async def clear(ctx, nombre: int = 5):
     # Supprime les messages demandés (+1 pour la commande elle-même)
     deleted = await ctx.channel.purge(limit=nombre + 1)
     
-    # Création d'un joli embed aux couleurs d'Akane
+    # Création de l'embed avec ton nouveau GIF
     embed = discord.Embed(
         description=f"🦊 *Miam !* Akane a dévoré ces {len(deleted) - 1} message(s) indésirable(s) ! 🍜✨",
         color=0x9b59b6
     )
-    # On intègre ton lien de GIF directement comme image dans l'embed
-    embed.set_image(url="https://cdn-longterm.mee6.xyz/plugins/embeds/images/1467225393298931795/3e96ad70e5c5e551529e7de26e34446a5656469b1cd95de6cf86aac4110904e3.gif")
+    embed.set_image(url="https://cdn.discordapp.com/attachments/1374312514573176873/1378170745452101723/d8828e4b-6c05-4771-8daa-cc84ea89bb73.gif")
     
-    await ctx.send(embed=embed)
+    # Envoie le message et le supprime automatiquement au bout de 5 secondes
+    await ctx.send(embed=embed, delete_after=5)
 
 @bot.command(name="salut")
 async def salut(ctx, membre: discord.Member = None):
