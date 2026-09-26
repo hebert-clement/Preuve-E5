@@ -23,5 +23,13 @@ async def suivi(ctx):
     
     await ctx.send(embed=embed)
 
-# Le bot récupérera le token de manière sécurisée depuis Render
+@bot.command(name="clear")
+async def clear(ctx, nombre: int = 5):
+    # Supprime le nombre de messages spécifié (+1 pour supprimer aussi la commande tapée)
+    deleted = await ctx.channel.purge(limit=nombre + 1)
+    
+    # Envoie un petit message temporaire qui se supprime tout seul (optionnel)
+    confirmation = await ctx.send(f"🧹 {len(deleted) - 1} message(s) supprimé(s) avec succès !")
+    await confirmation.delete(delay=3)
+
 bot.run(os.getenv("TOKEN"))
