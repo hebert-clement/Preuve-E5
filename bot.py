@@ -1,6 +1,7 @@
 import os
 import discord
 from discord.ext import commands
+import random
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -28,15 +29,22 @@ async def clear(ctx, nombre: int = 5):
     # Supprime les messages demandés (+1 pour la commande elle-même)
     deleted = await ctx.channel.purge(limit=nombre + 1)
     
-    # Création de l'embed avec ton nouveau GIF
-    embed = discord.Embed(
-        description=f"🦊 *Miam !* Akane a dévoré ces {len(deleted) - 1} message(s) indésirable(s) ! 🍜✨",
-        color=0x9b59b6
-    )
-    embed.set_image(url="https://cdn.discordapp.com/attachments/1374312514573176873/1378170745452101723/d8828e4b-6c05-4771-8daa-cc84ea89bb73.gif")
+    # 1 chance sur 3 qu'Akane ait trop mangé
+    indigestion = random.randint(1, 3) == 1
     
-    # Envoie le message et le supprime automatiquement au bout de 5 secondes
-    await ctx.send(embed=embed, delete_after=5)
+    if indigestion:
+        # Ton nouveau GIF personnalisé pour l'indigestion
+        gif_url = "https://cdn-longterm.mee6.xyz/plugins/embeds/images/1467225393298931795/f02aea75e348dd1fabada26996d91be1b2ca5e0fe740c341cbc44f35caee72e1.gif"
+        description = f"🦊 *Oulah...* Akane a la digestion difficile après avoir avalé ces {len(deleted) - 1} message(s) ! Elle a un peu abusé... 😅💫"
+    else:
+        # GIF normal de repas
+        gif_url = "https://cdn.discordapp.com/attachments/1374312514573176873/1378170745452101723/d8828e4b-6c05-4771-8daa-cc84ea89bb73.gif"
+        description = f"🦊 *Miam !* Akane a dévoré ces {len(deleted) - 1} message(s) indésirable(s) ! 🍜✨"
+
+    embed = discord.Embed(description=description, color=0x9b59b6)
+    embed.set_image(url=gif_url)
+    
+    await ctx.send(embed=embed, delete_after=6)
 
 @bot.command(name="salut")
 async def salut(ctx, membre: discord.Member = None):
@@ -46,5 +54,29 @@ async def salut(ctx, membre: discord.Member = None):
     else:
         # Si tu tapes !salut @quelqu'un (salue la personne mentionnée)
         await ctx.send(f"🦊 Akane fait un grand coucou à {membre.mention} de la part de {ctx.author.mention} ! 👋✨")
+
+@bot.command(name="help")
+async def help_command(ctx):
+    # Crée un embed avec la liste des commandes d'Akane
+    embed = discord.Embed(
+        title="📜 Grimoire des commandes d'Akane",
+        description="Voici la liste de tout ce que je peux faire pour t'aider sur le serveur :",
+        color=0x9b59b6
+    )
+    embed.add_field(name="`!suivi`", value="Affiche le tableau de suivi des commissions et du mod Figura.", inline=False)
+    embed.add_field(name="`!calin [membre]`", value="Fait un gros câlin (à toi-même ou à la personne mentionnée).", inline=False)
+    embed.add_field(name="`!salut [membre]`", value="Envoie un coucou chaleureux.", inline=False)
+    embed.add_field(name="`!clear [nombre]`", value="Nettoie les derniers messages (avec un risque d'indigestion pour Akane !).", inline=False)
+    
+    embed.set_footer(text="Akane Bot • 24/7 Cloud Hosting")
+
+    try:
+        # Envoie l'aide en message privé (MP)
+        await ctx.author.send(embed=embed)
+        # Petit message de confirmation discret dans le salon
+        await ctx.send(f"📬 {ctx.author.mention}, je t'ai envoyé la liste de mes commandes en message privé !", delete_after=4)
+    except discord.Forbidden:
+        # Si le membre a bloqué ses MP
+        await ctx.send(f"❌ {ctx.author.mention}, je n'ai pas réussi à t'envoyer de MP ! Vérifie tes paramètres de confidentialité.", delete_after=5)
 
 bot.run(os.getenv("TOKEN"))
