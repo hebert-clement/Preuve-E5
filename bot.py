@@ -27,7 +27,7 @@ async def suivi(ctx):
     
     await ctx.send(embed=embed)
 
-@bot.command(name="clear")
+bot.command(name="clear")
 async def clear(ctx, nombre: int = 5):
     # Supprime les messages demandés (+1 pour la commande elle-même)
     deleted = await ctx.channel.purge(limit=nombre + 1)
@@ -36,12 +36,12 @@ async def clear(ctx, nombre: int = 5):
     indigestion = random.randint(1, 3) == 1
     
     if indigestion:
-        # Lien stable Tenor pour l'indigestion (ventre plein / mal au cœur)
-        gif_url = "https://media.tenor.com/1-eJ3W83q0IAAAAj/neko-pat.gif"  # Remplacé par un lien stable
+        # Remplace par ton lien GitHub brut (raw) pour l'indigestion
+        gif_url = "https://raw.githubusercontent.com/TON_PSEUDO/TON_REPO/main/images/indigestion.gif"
         description = f"🦊 *Oulah...* Akane a la digestion difficile après avoir avalé ces {len(deleted) - 1} message(s) ! Elle a un peu abusé... 😅💫"
     else:
-        # GIF normal de repas (lien Tenor stable)
-        gif_url = "https://media.tenor.com/3oKIPEhWQVfrXC8Lfy/anime-eating.gif"
+        # Remplace par ton lien GitHub brut (raw) pour le repas normal
+        gif_url = "https://raw.githubusercontent.com/TON_PSEUDO/TON_REPO/main/images/repas.gif"
         description = f"🦊 *Miam !* Akane a dévoré ces {len(deleted) - 1} message(s) indésirable(s) ! 🍜✨"
 
     embed = discord.Embed(description=description, color=0x9b59b6)
@@ -65,10 +65,9 @@ async def calin(ctx, membre: discord.Member = None):
 
 @bot.command(name="caresser")
 async def caresser(ctx):
-    # Lien direct stable pour les caresses
-    gif_url = "https://media.tenor.com/tH7rWcZl9e8AAAAC/neko-pat.gif"
+    # Remplace par ton lien GitHub brut (raw) pour les caresses si tu veux l'y mettre aussi
+    gif_url = "https://raw.githubusercontent.com/TON_PSEUDO/TON_REPO/main/images/caresse.gif"
     
-    # Envoie le message et le GIF directement en texte (ce qui évite les bugs d'embed et charge instantanément)
     await ctx.send(f"🦊 *Nya~* {ctx.author.mention} fait de douces caresses à Akane... Ça a l'air de lui plaire ! ✨💖\n{gif_url}")
 
 @bot.command(name="help")
