@@ -37,7 +37,7 @@ async def clear(ctx, nombre: int = 5):
     
     if indigestion:
         # Ton nouveau GIF personnalisé pour l'indigestion
-        gif_url = "https://cdn-longterm.mee6.xyz/plugins/embeds/images/1467225393298931795/f02aea75e348dd1fabada26996d91be1b2ca5e0fe740c341cbc44f35caee72e1.gif"
+        gif_url = "https://cdn.discordapp.com/attachments/1552759796048855231/1553742660345536613/ezgif.com-cut.gif"
         description = f"🦊 *Oulah...* Akane a la digestion difficile après avoir avalé ces {len(deleted) - 1} message(s) ! Elle a un peu abusé... 😅💫"
     else:
         # GIF normal de repas
@@ -65,12 +65,11 @@ async def calin(ctx, membre: discord.Member = None):
 
 @bot.command(name="caresser")
 async def caresser(ctx):
-    # Crée un embed pour les caresses avec le GIF de Tenor
-    embed = discord.Embed(
-        description=f"🦊 *Nya~* {ctx.author.mention} fait de douces caresses à Akane... Ça a l'air de lui plaire ! ✨💖",
-        color=0x9b59b6
-    )
-    embed.set_image(url="https://media.tenor.com/2s36B5o6p80AAAAC/neko-pat.gif") # Lien direct optimisé du GIF Tenor
+    # Lien direct optimisé pour que Tenor affiche le GIF dans le chat
+    gif_url = "https://media.tenor.com/tH7rWcZl9e8AAAAC/neko-pat.gif"
+    
+    # Envoie le message et le GIF directement
+    await ctx.send(f"🦊 *Nya~* {ctx.author.mention} fait de douces caresses à Akane... Ça a l'air de lui plaire ! ✨💖\n{gif_url}")
     
     await ctx.send(embed=embed)
 
