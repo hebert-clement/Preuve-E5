@@ -63,6 +63,17 @@ async def calin(ctx, membre: discord.Member = None):
     else:
         await ctx.send(f"{ctx.author.mention} fait un gros câlin tout doux à {membre.mention} ! ✨🦊")
 
+@bot.command(name="caresser")
+async def caresser(ctx):
+    # Crée un embed pour les caresses avec le GIF de Tenor
+    embed = discord.Embed(
+        description=f"🦊 *Nya~* {ctx.author.mention} fait de douces caresses à Akane... Ça a l'air de lui plaire ! ✨💖",
+        color=0x9b59b6
+    )
+    embed.set_image(url="https://media.tenor.com/2s36B5o6p80AAAAC/neko-pat.gif") # Lien direct optimisé du GIF Tenor
+    
+    await ctx.send(embed=embed)
+
 @bot.command(name="help")
 async def help_command(ctx):
     embed = discord.Embed(
@@ -72,6 +83,7 @@ async def help_command(ctx):
     )
     embed.add_field(name="`!suivi`", value="Affiche le tableau de suivi des commissions et du mod Figura.", inline=False)
     embed.add_field(name="`!calin [membre]`", value="Fait un gros câlin (à toi-même ou à la personne mentionnée).", inline=False)
+    embed.add_field(name="`!caresser`", value="Fait des caresses à Akane pour voir sa réaction !", inline=False)
     embed.add_field(name="`!salut [membre]`", value="Envoie un coucou chaleureux.", inline=False)
     embed.add_field(name="`!clear [nombre]`", value="Nettoie les derniers messages (avec un risque d'indigestion pour Akane !).", inline=False)
     
