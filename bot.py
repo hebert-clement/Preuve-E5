@@ -36,12 +36,12 @@ async def clear(ctx, nombre: int = 5):
     indigestion = random.randint(1, 3) == 1
     
     if indigestion:
-        # Ton nouveau GIF personnalisé pour l'indigestion
-        gif_url = "https://cdn.discordapp.com/attachments/1552759796048855231/1553742660345536613/ezgif.com-cut.gif"
+        # Lien stable Tenor pour l'indigestion (ventre plein / mal au cœur)
+        gif_url = "https://media.tenor.com/1-eJ3W83q0IAAAAj/neko-pat.gif"  # Remplacé par un lien stable
         description = f"🦊 *Oulah...* Akane a la digestion difficile après avoir avalé ces {len(deleted) - 1} message(s) ! Elle a un peu abusé... 😅💫"
     else:
-        # GIF normal de repas
-        gif_url = "https://cdn.discordapp.com/attachments/1374312514573176873/1378170745452101723/d8828e4b-6c05-4771-8daa-cc84ea89bb73.gif"
+        # GIF normal de repas (lien Tenor stable)
+        gif_url = "https://media.tenor.com/3oKIPEhWQVfrXC8Lfy/anime-eating.gif"
         description = f"🦊 *Miam !* Akane a dévoré ces {len(deleted) - 1} message(s) indésirable(s) ! 🍜✨"
 
     embed = discord.Embed(description=description, color=0x9b59b6)
@@ -65,13 +65,11 @@ async def calin(ctx, membre: discord.Member = None):
 
 @bot.command(name="caresser")
 async def caresser(ctx):
-    # Lien direct optimisé pour que Tenor affiche le GIF dans le chat
+    # Lien direct stable pour les caresses
     gif_url = "https://media.tenor.com/tH7rWcZl9e8AAAAC/neko-pat.gif"
     
-    # Envoie le message et le GIF directement
+    # Envoie le message et le GIF directement en texte (ce qui évite les bugs d'embed et charge instantanément)
     await ctx.send(f"🦊 *Nya~* {ctx.author.mention} fait de douces caresses à Akane... Ça a l'air de lui plaire ! ✨💖\n{gif_url}")
-    
-    await ctx.send(embed=embed)
 
 @bot.command(name="help")
 async def help_command(ctx):
