@@ -8,6 +8,9 @@ intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
+# Désactive la commande help par défaut de Discord pour laisser place à la nôtre
+bot.remove_command("help")
+
 @bot.event
 async def on_ready():
     print(f"Akane est en ligne ! Connectée en tant que {bot.user}")
@@ -49,15 +52,19 @@ async def clear(ctx, nombre: int = 5):
 @bot.command(name="salut")
 async def salut(ctx, membre: discord.Member = None):
     if membre is None:
-        # Si tu tapes juste !salut (salue la personne qui a écrit la commande)
         await ctx.send(f"🦊 Coucou {ctx.author.mention} ! Bienvenue par ici ! ✨")
     else:
-        # Si tu tapes !salut @quelqu'un (salue la personne mentionnée)
         await ctx.send(f"🦊 Akane fait un grand coucou à {membre.mention} de la part de {ctx.author.mention} ! 👋✨")
+
+@bot.command(name="calin")
+async def calin(ctx, membre: discord.Member = None):
+    if membre is None:
+        await ctx.send(f"{ctx.author.mention} fait un gros câlin à tout le monde ! 🦊🤗")
+    else:
+        await ctx.send(f"{ctx.author.mention} fait un gros câlin tout doux à {membre.mention} ! ✨🦊")
 
 @bot.command(name="help")
 async def help_command(ctx):
-    # Crée un embed avec la liste des commandes d'Akane
     embed = discord.Embed(
         title="📜 Grimoire des commandes d'Akane",
         description="Voici la liste de tout ce que je peux faire pour t'aider sur le serveur :",
@@ -71,12 +78,9 @@ async def help_command(ctx):
     embed.set_footer(text="Akane Bot • 24/7 Cloud Hosting")
 
     try:
-        # Envoie l'aide en message privé (MP)
         await ctx.author.send(embed=embed)
-        # Petit message de confirmation discret dans le salon
         await ctx.send(f"📬 {ctx.author.mention}, je t'ai envoyé la liste de mes commandes en message privé !", delete_after=4)
     except discord.Forbidden:
-        # Si le membre a bloqué ses MP
         await ctx.send(f"❌ {ctx.author.mention}, je n'ai pas réussi à t'envoyer de MP ! Vérifie tes paramètres de confidentialité.", delete_after=5)
 
 bot.run(os.getenv("TOKEN"))
