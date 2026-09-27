@@ -37,11 +37,11 @@ async def clear(ctx, nombre: int = 5):
     
     if indigestion:
         # Remplace par ton lien GitHub brut (raw) pour l'indigestion
-        gif_url = "https://raw.githubusercontent.com/TON_PSEUDO/TON_REPO/main/images/indigestion.gif"
+        gif_url = "https://github.com/hebert-clement/Preuve-E5/blob/main/indigestion.gif"
         description = f"🦊 *Oulah...* Akane a la digestion difficile après avoir avalé ces {len(deleted) - 1} message(s) ! Elle a un peu abusé... 😅💫"
     else:
         # Remplace par ton lien GitHub brut (raw) pour le repas normal
-        gif_url = "https://raw.githubusercontent.com/TON_PSEUDO/TON_REPO/main/images/repas.gif"
+        gif_url = "https://github.com/hebert-clement/Preuve-E5/blob/main/repas.gif"
         description = f"🦊 *Miam !* Akane a dévoré ces {len(deleted) - 1} message(s) indésirable(s) ! 🍜✨"
 
     embed = discord.Embed(description=description, color=0x9b59b6)
@@ -66,7 +66,7 @@ async def calin(ctx, membre: discord.Member = None):
 @bot.command(name="caresser")
 async def caresser(ctx):
     # Remplace par ton lien GitHub brut (raw) pour les caresses si tu veux l'y mettre aussi
-    gif_url = "https://raw.githubusercontent.com/TON_PSEUDO/TON_REPO/main/images/caresse.gif"
+    gif_url = "https://github.com/hebert-clement/Preuve-E5/blob/main/caresse.gif"
     
     await ctx.send(f"🦊 *Nya~* {ctx.author.mention} fait de douces caresses à Akane... Ça a l'air de lui plaire ! ✨💖\n{gif_url}")
 
