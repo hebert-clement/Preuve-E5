@@ -1,19 +1,48 @@
 import os
-import discord
-from discord.ext import commands
+import datetime
 import random
+import discord
+from discord.ext import commands, tasks
 
 intents = discord.Intents.default()
 intents.message_content = True
 
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-# Désactive la commande help par défaut de Discord pour laisser place à la nôtre
+# Désactive la commande help par défaut de Discord
 bot.remove_command("help")
+
+# ID du salon où l'annonce du 28 décembre sera postée (Remplace par l'ID de ton salon)
+# Pour trouver l'ID d'un salon, active le mode développeur sur Discord, puis fais un clic droit sur le salon -> "Copier l'identifiant"
+ANNOUNCE_CHANNEL_ID = 1552759677740126248  # <--- À remplacer par ton vrai ID de salon !
 
 @bot.event
 async def on_ready():
     print(f"Akane est en ligne ! Connectée en tant que {bot.user}")
+    # Lance la boucle de vérification de la date si elle n'est pas déjà lancée
+    if not verifier_date_commission.is_running():
+        verifier_date_commission.start()
+
+# Tâche de fond qui tourne en permanence pour vérifier la date
+@tasks.loop(hours=24)
+async def verifier_date_commission():
+    maintenant = datetime.datetime.now()
+    
+    # Vérifie si on est le 28 décembre
+    if maintenant.month == 12 and maintenant.day == 28:
+        channel = bot.get_channel(ANNOUNCE_CHANNEL_ID)
+        if channel:
+            # Crée l'embed d'annonce
+            embed = discord.Embed(
+                title="🚨 C'est le grand jour ! Début des commissions !",
+                description="🦊 C'est parti ! La commission de **casynovartdesign** (Ref Sheet + Nude) commence officiellement aujourd'hui ! Akane a hâte de voir le résultat ! ✨🎨",
+                color=0x9b59b6
+            )
+            embed.set_image(url="https://github.com/hebert-clement/Preuve-E5/raw/main/repas.gif")
+            embed.set_footer(text="Akane Bot • Annonce Automatique")
+            
+            # Envoie l'annonce dans le salon (avec une mention @everyone ou un rôle si tu veux)
+            await channel.send("@everyone", embed=embed)
 
 @bot.command(name="suivi")
 async def suivi(ctx):
@@ -21,26 +50,21 @@ async def suivi(ctx):
         title="🦊 Suivi des Commissions d'Akane & Foxia",
         color=0x9b59b6
     )
-    embed.add_field(name="🎨 casynovartdesign", value="Ref Sheet + Nude : En cours de validation", inline=False)
+    embed.add_field(name="🎨 casynovartdesign", value="Ref Sheet + Nude : **Début le 28 Décembre !**", inline=False)
     embed.add_field(name="👗 Callula", value="Tenues saisonnières (Half-body) : Prévu", inline=False)
-    embed.add_field(name="⛏️ Mod Figura (Minecraft)", value="Réouverture des commissions : **Mars 2027**", inline=False)
+    embed.add_field(name="⛏️️ Mod Figura (Minecraft)", value="Réouverture des commissions : **Mars 2027**", inline=False)
     
     await ctx.send(embed=embed)
 
-@bot.command(name="clear")  # <--- Le '@' a été rajouté ici !
+@bot.command(name="clear")
 async def clear(ctx, nombre: int = 5):
-    # Supprime les messages demandés (+1 pour la commande elle-même)
     deleted = await ctx.channel.purge(limit=nombre + 1)
-    
-    # 1 chance sur 3 qu'Akane ait trop mangé
     indigestion = random.randint(1, 3) == 1
     
     if indigestion:
-        # Utilisation de 'raw' au lieu de 'blob'
         gif_url = "https://github.com/hebert-clement/Preuve-E5/raw/main/indigestion.gif"
         description = f"🦊 *Oulah...* Akane a la digestion difficile après avoir avalé ces {len(deleted) - 1} message(s) ! Elle a un peu abusé... 😅💫"
     else:
-        # Utilisation de 'raw' au lieu de 'blob'
         gif_url = "https://github.com/hebert-clement/Preuve-E5/raw/main/repas.gif"
         description = f"🦊 *Miam !* Akane a dévoré ces {len(deleted) - 1} message(s) indésirable(s) ! 🍜✨"
 
@@ -65,9 +89,7 @@ async def calin(ctx, membre: discord.Member = None):
 
 @bot.command(name="caresser")
 async def caresser(ctx):
-    # Utilisation de 'raw' au lieu de 'blob' pour charger directement le GIF
     gif_url = "https://github.com/hebert-clement/Preuve-E5/raw/main/caresse.gif"
-    
     await ctx.send(f"🦊 *Nya~* {ctx.author.mention} fait de douces caresses à Akane... Ça a l'air de lui plaire ! ✨💖\n{gif_url}")
 
 @bot.command(name="help")
